@@ -25,4 +25,5 @@ jobs:
       with:
         PROJECT_FILE_PATH: GedasFX.SourceGenerators.gRPC.MediatR/GedasFX.SourceGenerators.gRPC.MediatR.csproj
         INCLUDE_SYMBOLS: true
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
   
