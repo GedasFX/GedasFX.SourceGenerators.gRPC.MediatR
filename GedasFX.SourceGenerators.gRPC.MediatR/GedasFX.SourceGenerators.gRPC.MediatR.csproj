@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>GedasFX</Authors>
+        <Description>
+            Source code generator that creates MediatR bindings from Services defined in gRPC .proto files.
+        </Description>
+        <Copyright>Copyright (c) GedasFX 2022.</Copyright>
+        <PackageProjectUrl>https://github.com/GedasFX/SourceGenerators</PackageProjectUrl>
+        <PackageTags>source generator, grpc, rpc, mediatr</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
+        <IncludeBuildOutput>false</IncludeBuildOutput> <!-- Do not include the generator as a lib dependency -->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Package the generator in the analyzer directory of the nuget package -->
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MediatR.Contracts" Version="1.0.1"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>
