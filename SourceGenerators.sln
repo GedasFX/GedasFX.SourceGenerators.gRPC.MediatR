@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedasFX.SourceGenerators.gRPC.MediatR", "GedasFX.SourceGenerators.gRPC.MediatR\GedasFX.SourceGenerators.gRPC.MediatR.csproj", "{6DDEDFD7-9ADD-401A-A597-4598D1BB6204}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedasFX.SourceGenerators.gRPC.MediatR.Tests", "GedasFX.SourceGenerators.gRPC.MediatR.Tests\GedasFX.SourceGenerators.gRPC.MediatR.Tests.csproj", "{25E56EED-09DB-4049-BABA-51B1F5DBDCF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{6DDEDFD7-9ADD-401A-A597-4598D1BB6204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DDEDFD7-9ADD-401A-A597-4598D1BB6204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DDEDFD7-9ADD-401A-A597-4598D1BB6204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E56EED-09DB-4049-BABA-51B1F5DBDCF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E56EED-09DB-4049-BABA-51B1F5DBDCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E56EED-09DB-4049-BABA-51B1F5DBDCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E56EED-09DB-4049-BABA-51B1F5DBDCF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

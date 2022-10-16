@@ -10,7 +10,7 @@
         <Version>1.0.0</Version>
         <Authors>GedasFX</Authors>
         <Description>
-            Source code generator that creates MediatR bindings from Services defined in gRPC .proto files.
+            Source code generator which autocreates gRPC services which send requests trough the MediatR pipeline.
         </Description>
         <Copyright>Copyright (c) GedasFX 2022.</Copyright>
         <PackageProjectUrl>https://github.com/GedasFX/SourceGenerators</PackageProjectUrl>
