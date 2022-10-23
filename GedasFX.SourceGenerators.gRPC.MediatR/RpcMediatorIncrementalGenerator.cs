@@ -79,10 +79,11 @@ namespace {requestNamespace}
 
     private static void GenerateServices(SourceProductionContext context, ClassDeclarationSyntax rpcService)
     {
-        // rpcService.Members
+        var @namespace = (rpcService.Parent?.Parent as NamespaceDeclarationSyntax)?.Name;
+        if (@namespace == null) // Classes without namespaces are not supported.
+            return;
 
-        var @namespace = ((NamespaceDeclarationSyntax)rpcService.Parent!.Parent!).Name;
-        var parentClass = ((ClassDeclarationSyntax)rpcService.Parent).Identifier;
+        var parentClass = ((ClassDeclarationSyntax)rpcService.Parent!).Identifier;
 
         var sb = new StringBuilder();
         foreach (var member in rpcService.Members)

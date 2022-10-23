@@ -17,8 +17,8 @@ dotnet add package GedasFX.SourceGenerators.gRPC.MediatR
 ```proto
 syntax = "proto3";  
 
-option csharp_namespace = "GrpcService";  
-
+// csharp_namespace or package is required.
+option csharp_namespace = "GrpcService";
 package greet;  
 
 // The greeting service definition.  

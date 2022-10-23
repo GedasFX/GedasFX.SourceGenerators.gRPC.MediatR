@@ -1,0 +1,5 @@
+﻿syntax = "proto3";
+
+// Generator should not crash
+service NoNamespaceService {
+}
