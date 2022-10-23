@@ -19,4 +19,20 @@ public class MediatorTests
 
         Assert.Equal("Hello Tester", response.Message);
     }
+
+    [Fact]
+    public void TestCqrs()
+    {
+        var query = (IBaseRequest)new MyOrg.Application.SampleQuery();
+        Assert.True(query is IBaseQueryRequest);
+        Assert.False(query is IBaseCommandRequest);
+
+        var command = (IBaseRequest)new MyOrg.Application.SampleCommand();
+        Assert.True(command is IBaseCommandRequest);
+        Assert.False(command is IBaseQueryRequest);
+
+        var other = (IBaseRequest)new MyOrg.Application.HelloRequest();
+        Assert.False(other is IBaseCommandRequest);
+        Assert.False(other is IBaseQueryRequest);
+    }
 }

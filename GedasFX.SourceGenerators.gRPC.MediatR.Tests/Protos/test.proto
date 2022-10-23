@@ -6,6 +6,9 @@ package MyOrg.Application;
 service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply);
+
+  rpc GetData (SampleQuery) returns (SampleDto);
+  rpc PostData (SampleCommand) returns (SampleDto);
 }
 
 // The request message containing the user's name.
@@ -16,4 +19,18 @@ message HelloRequest {
 // The response message containing the greetings.
 message HelloReply {
   string message = 1;
+}
+
+
+message SampleQuery {
+  uint64 id = 1;
+}
+
+message SampleCommand {
+  string data = 1;
+}
+
+message SampleDto {
+  uint64 id = 1;
+  string data = 2;
 }

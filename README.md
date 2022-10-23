@@ -78,3 +78,23 @@ NOTE: `Grpc.AspNetCore.Server.Reflection` was added for this example.
   "message": "Hello World"
 }
 ```
+
+### CQRS
+
+Version v1.2.0 adds generation support for CQRS. If the request name ends with `Command` or `Query` the interface will be generated as `ICommandRequest<out TResponse> : IRequest<TResponse>` or `IQueryRequest<out TResponse> : IRequest<TResponse>` respectively.
+
+This separation allows treating queries and commands differently. Here is an example of skipping transaction initialization if a request was marked as a query:
+
+```cs
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    {
+        if (request is IBaseQueryRequest)
+            return await next();
+
+        await _repository.BeginTransaction();
+        var result = await next(); // If throws, result will not be committed.
+        await _repository.CommitTransaction();
+
+        return result;
+    }
+```

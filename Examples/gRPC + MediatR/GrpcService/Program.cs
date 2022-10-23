@@ -1,4 +1,5 @@
 using GrpcService;
+using GrpcService.Behaviors;
 using GrpcService.Features;
 using MediatR;
 
@@ -11,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMediatR(typeof(HelloRequestHandler));
 builder.Services.AddGrpcReflection();
 builder.Services.AddGrpc();
+
+// CQRS Behavior
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
 
 var app = builder.Build();
 

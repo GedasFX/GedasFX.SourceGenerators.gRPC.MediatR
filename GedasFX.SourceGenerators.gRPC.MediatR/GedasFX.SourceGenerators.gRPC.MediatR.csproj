@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <Authors>GedasFX</Authors>
         <Description>
             Source code generator which autocreates gRPC services which send requests trough the MediatR pipeline.
