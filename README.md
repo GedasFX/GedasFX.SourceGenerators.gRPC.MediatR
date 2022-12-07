@@ -102,3 +102,24 @@ This separation allows treating queries and commands differently. Here is an exa
         return result;
     }
 ```
+
+#### Opting out
+
+To opt out of one (or more) of the CQRS generation features, add these lines to the `.csproj` file where the NuGet package is imported:
+
+```xml
+    <PropertyGroup>
+        <MediatR_EnableCQRS>true</MediatR_EnableCQRS>
+        <MediatR_GenerateCQRSTypes>false</MediatR_GenerateCQRSTypes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="MediatR_EnableCQRS" />
+        <CompilerVisibleProperty Include="MediatR_GenerateCQRSTypes" />
+    </ItemGroup>
+```
+
+Note: `CompilerVisibleProperty` is required for the underlying Roslyn analyzer. 
+
+* `MediatR_EnableCQRS` - default `true`. Setting this to `false` will disable the CQRS module.
+* `MediatR_GenerateCQRSTypes` - default `true`. Setting this to `false` will prevent the generation of `IBaseQueryRequest`` and other required CQRS types. Useful if the end project already uses a library with predefined CQRS types and handlers.

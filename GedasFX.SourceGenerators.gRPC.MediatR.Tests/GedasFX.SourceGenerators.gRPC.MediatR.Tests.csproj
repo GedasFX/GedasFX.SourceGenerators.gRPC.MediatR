@@ -17,8 +17,8 @@
         <PackageReference Include="Google.Protobuf" Version="3.21.7" />
         <PackageReference Include="Grpc.Core.Api" Version="2.49.0" />
         <PackageReference Include="Grpc.Tools" Version="2.49.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
@@ -36,7 +36,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GedasFX.SourceGenerators.gRPC.MediatR\GedasFX.SourceGenerators.gRPC.MediatR.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\GedasFX.SourceGenerators.gRPC.MediatR\GedasFX.SourceGenerators.gRPC.MediatR.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <MediatR_EnableCQRS>true</MediatR_EnableCQRS>
+        <MediatR_GenerateCQRSTypes>true</MediatR_GenerateCQRSTypes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="MediatR_EnableCQRS"/>
+        <CompilerVisibleProperty Include="MediatR_GenerateCQRSTypes"/>
     </ItemGroup>
 
 </Project>
