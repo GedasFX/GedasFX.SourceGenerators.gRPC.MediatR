@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GedasFX.SourceGenerators.gRPC.MediatR" Version="1.3.0" />
+        <PackageReference Include="GedasFX.SourceGenerators.gRPC.MediatR" Version="1.3.2" />
         <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
         <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.49.0" /> <!-- Optional: Added For Verification -->
         <PackageReference Include="MediatR" Version="11.1.0" />
@@ -25,13 +25,13 @@
     </ItemGroup>
 
     <PropertyGroup>
+        <!-- Required for CQRS module of GedasFX.SourceGenerators.gRPC.MediatR -->
         <MediatR_EnableCQRS>true</MediatR_EnableCQRS>
-        <MediatR_GenerateCQRSTypes>true</MediatR_GenerateCQRSTypes>
     </PropertyGroup>
 
     <ItemGroup>
+        <!-- Required for CQRS module of GedasFX.SourceGenerators.gRPC.MediatR -->
         <CompilerVisibleProperty Include="MediatR_EnableCQRS" />
-        <CompilerVisibleProperty Include="MediatR_GenerateCQRSTypes" />
     </ItemGroup>
 
 </Project>

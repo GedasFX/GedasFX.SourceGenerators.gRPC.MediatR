@@ -41,12 +41,10 @@
 
     <PropertyGroup>
         <MediatR_EnableCQRS>true</MediatR_EnableCQRS>
-        <MediatR_GenerateCQRSTypes>true</MediatR_GenerateCQRSTypes>
     </PropertyGroup>
 
     <ItemGroup>
         <CompilerVisibleProperty Include="MediatR_EnableCQRS"/>
-        <CompilerVisibleProperty Include="MediatR_GenerateCQRSTypes"/>
     </ItemGroup>
 
 </Project>

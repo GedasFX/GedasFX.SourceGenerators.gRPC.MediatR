@@ -90,6 +90,7 @@ Version v1.2.0 adds generation support for CQRS. If the request name ends with `
 This separation allows treating queries and commands differently. Here is an example of skipping transaction initialization if a request was marked as a query:
 
 ```cs
+    // TranactionBehavior.cs
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         if (request is IBaseQueryRequest)
@@ -103,23 +104,31 @@ This separation allows treating queries and commands differently. Here is an exa
     }
 ```
 
-#### Opting out
+#### Opting in
 
-To opt out of one (or more) of the CQRS generation features, add these lines to the `.csproj` file where the NuGet package is imported:
+To opt into the CQRS generation feature, add these lines to the `.csproj` file where the NuGet package is imported:
 
 ```xml
-    <PropertyGroup>
-        <MediatR_EnableCQRS>true</MediatR_EnableCQRS>
-        <MediatR_GenerateCQRSTypes>false</MediatR_GenerateCQRSTypes>
-    </PropertyGroup>
+  <PropertyGroup>
+    <MediatR_EnableCQRS>true</MediatR_EnableCQRS>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <CompilerVisibleProperty Include="MediatR_EnableCQRS" />
-        <CompilerVisibleProperty Include="MediatR_GenerateCQRSTypes" />
-    </ItemGroup>
+  <ItemGroup>
+    <CompilerVisibleProperty Include="MediatR_EnableCQRS" />
+  </ItemGroup>
 ```
 
-Note: `CompilerVisibleProperty` is required for the underlying Roslyn analyzer. 
+Note: `CompilerVisibleProperty` is required for the underlying Roslyn analyzer.
 
-* `MediatR_EnableCQRS` - default `true`. Setting this to `false` will disable the CQRS module.
-* `MediatR_GenerateCQRSTypes` - default `true`. Setting this to `false` will prevent the generation of `IBaseQueryRequest`` and other required CQRS types. Useful if the end project already uses a library with predefined CQRS types and handlers.
+Additionally, add these lines to some `.cs` file within the project (or extract to a library) to declare the CQRS contract:
+
+```cs
+namespace MediatR
+{
+    public interface ICommandRequest<out TResponse> : IRequest<TResponse>, IBaseCommandRequest { }
+    public interface IQueryRequest<out TResponse> : IRequest<TResponse>, IBaseQueryRequest { }
+
+    public interface IBaseCommandRequest : IBaseRequest { }
+    public interface IBaseQueryRequest : IBaseRequest { }
+}
+```
