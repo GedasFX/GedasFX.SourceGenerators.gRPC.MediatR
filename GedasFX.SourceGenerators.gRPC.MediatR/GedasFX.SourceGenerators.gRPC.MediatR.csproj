@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>1.3.2</Version>
+        <Version>1.3.3</Version>
         <Authors>GedasFX</Authors>
         <Description>
             Source code generator which autocreates gRPC services which send requests trough the MediatR pipeline.
@@ -16,6 +16,7 @@
         <PackageProjectUrl>https://github.com/GedasFX/SourceGenerators</PackageProjectUrl>
         <PackageTags>source generator, grpc, rpc, mediatr</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
         <IncludeBuildOutput>false</IncludeBuildOutput> <!-- Do not include the generator as a lib dependency -->
@@ -32,11 +33,15 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../README.md" Pack="True" PackagePath="/" />
     </ItemGroup>
 
 </Project>
