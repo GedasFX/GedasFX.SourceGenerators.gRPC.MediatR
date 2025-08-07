@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using Microsoft.CodeAnalysis;
@@ -17,6 +19,8 @@ public class RpcMediatorIncrementalGenerator : IIncrementalGenerator
 {
     private static string GeneratorVersion { get; } = typeof(RpcMediatorIncrementalGenerator).Assembly.GetName().Version.ToString(3);
     private static string GeneratedCodeAttribute { get; } = $@"[global::System.CodeDom.Compiler.GeneratedCode(""GedasFX.SourceGenerators.gRPC.MediatR"", ""{GeneratorVersion}"")]";
+    
+    private static HashSet<string>? AddedHints { get; set; }
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -34,6 +38,8 @@ public class RpcMediatorIncrementalGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(classDeclarations.Combine(configurationProvider), GenerateContracts!);
         context.RegisterSourceOutput(classDeclarations, GenerateServices!);
+
+        AddedHints = new HashSet<string>(StringComparer.Ordinal);
     }
 
     private static Configuration ExtractConfiguration(AnalyzerConfigOptionsProvider s, CancellationToken _ = default)
@@ -66,15 +72,8 @@ namespace {requestNamespace}
 }}";
 
             var hint = $"{$"{requestNamespace}.{requestClassType}".Replace('.', '_')}.g.cs";
-            try
-            {
+            if (AddedHints!.Add(hint))
                 context.AddSource(hint, source);
-            }
-            catch (ArgumentException e)
-            {
-                if (e.Message != $"The hintName '{hint}' of the added source file must be unique within a generator. (Parameter 'hintName')")
-                    throw;
-            }
         }
     }
 
