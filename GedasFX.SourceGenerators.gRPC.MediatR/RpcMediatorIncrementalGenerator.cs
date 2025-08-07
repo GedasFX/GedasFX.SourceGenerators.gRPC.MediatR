@@ -72,7 +72,8 @@ namespace {requestNamespace}
             }
             catch (ArgumentException e)
             {
-                if (e.Message != $"The hintName '{hint}' of the added source file must be unique within a generator. (Parameter 'hintName')")
+                if (e.Message != $"The hintName '{hint}' of the added source file must be unique within a generator. (Parameter 'hintName')" &&
+                    e.Message != $"The hintName '{hint}' of the added source file must be unique within a generator.")
                     throw;
             }
         }
